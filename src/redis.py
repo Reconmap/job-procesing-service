@@ -11,7 +11,7 @@ async def consume_redis_queue():
 
     r = await aioredis.create_redis_pool(redis_host, password = 'REconDIS')
     while True:
-        itemEncoded = await r.brpop('tasks:queue')
+        itemEncoded = await r.brpop('notifications:queue')
         item = json.loads(itemEncoded[1].decode('utf-8'))
         await broadcast(item)
 
