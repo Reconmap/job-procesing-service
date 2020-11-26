@@ -1,17 +1,19 @@
 
+CONTAINER_TAG=quay.io/reconmap/ws-server:latest
+
 .PHONY: start
 start:
 	docker run -it --network=api-backend_default \
-		-v $(PWD):/opt/reconmap-job-processing-svc \
+		-v $(PWD):/opt/reconmap/ws-server \
 		-p 8765:8765 \
 		--env-file env/dev.env \
-		reconmap/job-processing-svc:dev
+		$(CONTAINER_TAG)	
 
-.PHONY: build-dev
-build-dev:
-	docker build -t reconmap/job-processing-svc:dev .
+.PHONY: build
+build:
+	docker build -t $(CONTAINER_TAG) .
 
-.PHONY: push-dev
-push-dev:
-	docker push reconmap/job-processing-svc:dev
+.PHONY: push
+push:
+	docker push $(CONTAINER_TAG) 
 

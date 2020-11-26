@@ -1,8 +1,8 @@
 FROM python:3
 
-WORKDIR /opt/reconmap-job-processing-svc
+WORKDIR /opt/reconmap/ws-server
 
-RUN mkdir ./logs
+RUN mkdir logs
 
 COPY requirements.txt ./
 
@@ -12,5 +12,5 @@ COPY src/* ./src/
 
 EXPOSE 8765
 
-CMD ["python3", "/opt/reconmap-job-processing-svc/src/main.py"]
+CMD ["python3", "/opt/reconmap/ws-server/src/main.py"]
 
